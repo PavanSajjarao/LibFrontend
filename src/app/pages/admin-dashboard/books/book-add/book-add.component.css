@@ -1,0 +1,29 @@
+.book-add {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.book-add h2 {
+  text-align: center;
+}
+
+.book-add form > div {
+  margin-bottom: 1rem;
+}
+
+.book-add form label {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.book-add form input,
+.book-add form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.error {
+  color: red;
+}

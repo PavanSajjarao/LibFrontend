@@ -1,1 +1,103 @@
-<p>book-add works!</p>
+<div class="book-add">
+  <h2>Add New Book</h2>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <!-- Title -->
+    <div>
+      <label for="title">Title:</label>
+      <input id="title" type="text" formControlName="title" />
+      <div *ngIf="bookForm.get('title')?.invalid && (bookForm.get('title')?.dirty || bookForm.get('title')?.touched)">
+        <small class="error" *ngIf="bookForm.get('title')?.errors?.['required']">
+          Title is required.
+        </small>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description"></textarea>
+      <div *ngIf="bookForm.get('description')?.invalid && (bookForm.get('description')?.dirty || bookForm.get('description')?.touched)">
+        <small class="error" *ngIf="bookForm.get('description')?.errors?.['required']">
+          Description is required.
+        </small>
+      </div>
+    </div>
+
+    <!-- Author -->
+    <div>
+      <label for="author">Author:</label>
+      <input id="author" type="text" formControlName="author" />
+      <div *ngIf="bookForm.get('author')?.invalid && (bookForm.get('author')?.dirty || bookForm.get('author')?.touched)">
+        <small class="error" *ngIf="bookForm.get('author')?.errors?.['required']">
+          Author is required.
+        </small>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div>
+      <label for="price">Price:</label>
+      <input id="price" type="number" formControlName="price" />
+      <div *ngIf="bookForm.get('price')?.invalid && (bookForm.get('price')?.dirty || bookForm.get('price')?.touched)">
+        <small class="error" *ngIf="bookForm.get('price')?.errors?.['required']">
+          Price is required.
+        </small>
+        <small class="error" *ngIf="bookForm.get('price')?.errors?.['pattern']">
+          Invalid price format. Example: 19.99
+        </small>
+      </div>
+    </div>
+
+    <!-- Category Dropdown -->
+    <div>
+      <label for="category">Category:</label>
+      <select id="category" formControlName="category">
+        <option value="">--Select Category--</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Classics">Classics</option>
+        <option value="Crime">Crime</option>
+        <option value="Fantasy">Fantasy</option>
+      </select>
+      <div *ngIf="bookForm.get('category')?.invalid && (bookForm.get('category')?.dirty || bookForm.get('category')?.touched)">
+        <small class="error" *ngIf="bookForm.get('category')?.errors?.['required']">
+          Category is required.
+        </small>
+      </div>
+    </div>
+
+    <!-- Cover Image File Upload -->
+    <div>
+      <label for="coverImage">Cover Image:</label>
+      <input
+        id="coverImage"
+        type="file"
+        accept="image/png, image/jpeg, image/jpg"
+        (change)="onFileSelected($event)"
+      />
+      <!-- File-specific error message -->
+      <div *ngIf="coverImageError" class="error">
+        {{ coverImageError }}
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div *ngIf="uploadProgress >= 0" style="margin-top:10px;">
+      <progress [value]="uploadProgress" max="100" style="width:100%;"></progress>
+      <span>{{ uploadProgress }}%</span>
+    </div>
+
+    <!-- Image Preview -->
+    <div *ngIf="imageUrl" style="margin-top:10px;">
+      <p>Image Preview:</p>
+      <img [src]="imageUrl" alt="Image Preview" style="max-width:300px;">
+    </div>
+
+    <!-- Global Error Message -->
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="bookForm.invalid || !imageUrl">Add Book</button>
+  </form>
+</div>
