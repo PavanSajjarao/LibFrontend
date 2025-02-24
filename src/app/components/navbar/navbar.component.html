@@ -1,0 +1,5 @@
+<nav>
+    <a routerLink="/signup">Sign Up</a>
+    <a routerLink="/login">Login</a>
+    <button (click)="logout()" *ngIf="authService.getToken()">Logout</button>
+  </nav>

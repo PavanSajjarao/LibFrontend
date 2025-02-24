@@ -1,0 +1,8 @@
+<h2>Sign Up</h2>
+<form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+  <input formControlName="name" placeholder="Name" required />
+  <input formControlName="email" placeholder="Email" type="email" required />
+  <input formControlName="password" placeholder="Password" type="password" required />
+  <button type="submit">Sign Up</button>
+</form>
+<p *ngIf="errorMessage">{{ errorMessage }}</p>

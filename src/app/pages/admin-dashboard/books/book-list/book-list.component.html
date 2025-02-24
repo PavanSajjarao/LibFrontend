@@ -1,0 +1,44 @@
+
+
+  <div class="book-dashboard">
+    <h2>Book List</h2>
+    <button [routerLink]="['/admin-dashboard/books/add']">Add New Book</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Author</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{ book.title }}</td>
+          <td>{{ book.description }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.price | currency }}</td>
+          <td>{{ book.category }}</td>
+          <td>{{ book.createdAt | date:'medium' }}</td>
+          <td>
+            <button (click)="onEdit(book)">Edit</button>
+            <button (click)="onDelete(book._id)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="books.length === 0">
+          <td colspan="7">No books found.</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="pagination">
+      <button (click)="onPrevPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }}</span>
+      <button (click)="onNextPage()" [disabled]="!hasNextPage">Next</button>
+    </div>
+  </div>
+  
+  

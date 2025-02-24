@@ -1,0 +1,7 @@
+<h2>Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <input formControlName="email" placeholder="Email" type="email" required />
+  <input formControlName="password" placeholder="Password" type="password" required />
+  <button type="submit">Login</button>
+</form>
+<p *ngIf="errorMessage">{{ errorMessage }}</p>
