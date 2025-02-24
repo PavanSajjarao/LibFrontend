@@ -7,6 +7,7 @@ export interface Book {
   title: string;
   description: string;
   author: string;
+  imageUrl:string,
   price: number;
   category: string;
   createdAt: string;
@@ -39,6 +40,12 @@ export class BookService {
     const headers = this.getAuthHeaders();
 
     return this.http.get<Book[]>(this.apiUrl, { params, headers });
+  }
+  
+  // Retrieve a single book by its ID
+  getBookById(bookId: string): Observable<Book> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Book>(`${this.apiUrl}/${bookId}`, { headers });
   }
 
   // Create a new book
