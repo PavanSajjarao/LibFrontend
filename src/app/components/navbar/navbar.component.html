@@ -1,7 +1,8 @@
 <nav class="navbar">
+  <a routerLink="/home" routerLinkActive="active-link" class="nav-link">Home</a>
   <ng-container *ngIf="!authService.getToken()">
-    <a routerLink="/signup" class="nav-link">Sign Up</a>
-    <a routerLink="/login" class="nav-link">Login</a>
+    <a routerLink="/signup" routerLinkActive="active-link" class="nav-link">Sign Up</a>
+    <a routerLink="/login" routerLinkActive="active-link" class="nav-link">Login</a>
   </ng-container>
 
   <button (click)="logout()" *ngIf="authService.getToken()" class="logout-button">Logout</button>

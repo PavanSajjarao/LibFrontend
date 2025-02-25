@@ -1,36 +1,48 @@
 .navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #333;
-    padding: 15px;
-    border-radius: 8px;
-    gap: 15px;
-  }
-  
-  .nav-link {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .nav-link:hover {
-    color: #00bcd4;
-  }
-  
-  .logout-button {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 1em;
-    transition: background 0.3s ease-in-out;
-  }
-  
-  .logout-button:hover {
-    background-color: #cc0000;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+  padding: 15px;
+  border-radius: 8px;
+  gap: 15px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  background: rgba(0, 188, 212, 0.2);
+  color: #00bcd4;
+}
+
+/* Active Link Style */
+.active-link {
+  background: #00bcd4; /* Beautiful cyan-blue */
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Logout Button */
+.logout-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background 0.3s ease-in-out;
+}
+
+.logout-button:hover {
+  background-color: #cc0000;
+}

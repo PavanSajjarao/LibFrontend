@@ -1,6 +1,8 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';  // ✅ Import provideHttpClient
+import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr'; // ✅ Import Toastr
 
 import { routes } from './app.routes';
 
@@ -8,6 +10,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient()  // ✅ Add this to provide HttpClient
+    provideHttpClient(),
+    provideAnimations(), // ✅ Required for Toastr
+    provideToastr() // ✅ Toastr Configuration
   ]
 };
