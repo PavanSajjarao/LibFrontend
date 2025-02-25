@@ -1,29 +1,95 @@
+/* Book Add Form Container */
 .book-add {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 1rem;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Form Headings */
 .book-add h2 {
   text-align: center;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-.book-add form > div {
-  margin-bottom: 1rem;
+/* Form Input Fields */
+.book-add form div {
+  margin-bottom: 15px;
 }
 
-.book-add form label {
+.book-add label {
   display: block;
-  margin-bottom: 0.3rem;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.book-add form input,
-.book-add form textarea {
+.book-add input, 
+.book-add textarea, 
+.book-add select {
   width: 100%;
-  padding: 0.5rem;
-  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
-.error {
+.book-add input:focus, 
+.book-add textarea:focus, 
+.book-add select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* File Upload */
+.book-add input[type="file"] {
+  padding: 5px;
+}
+
+/* Error Messages */
+.book-add .error {
   color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Progress Bar */
+.book-add progress {
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+}
+
+/* Image Preview */
+.book-add img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+/* Submit Button */
+.book-add button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.book-add button:hover {
+  background: #0056b3;
+}
+
+.book-add button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }

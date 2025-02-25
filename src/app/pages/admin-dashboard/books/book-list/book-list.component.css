@@ -1,20 +1,144 @@
+/* Container styling */
 .book-dashboard {
-    padding: 1rem;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  
-  th, td {
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-    text-align: left;
-  }
-  
-  .pagination {
-    margin-top: 1rem;
-  }
-  
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.dashboard-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Add Book Button */
+.add-book-btn {
+  display: block;
+  width: fit-content;
+  margin: 10px auto;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-book-btn:hover {
+  background: #0056b3;
+}
+
+/* Table styling */
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Table header */
+.book-table th {
+  background: #007bff;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Table rows */
+.book-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Alternate row styling */
+.even-row {
+  background: #f2f2f2;
+}
+
+/* Hover effect for rows */
+.book-table tr:hover {
+  background: rgba(0, 123, 255, 0.1);
+}
+
+/* No books message */
+.no-books {
+  text-align: center;
+  font-style: italic;
+  padding: 15px;
+  color: #888;
+}
+
+/* Actions column */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Edit button */
+.edit-btn {
+  background: #28a745;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.edit-btn:hover {
+  background: #218838;
+}
+
+/* Delete button */
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.delete-btn:hover {
+  background: #c82333;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.pagination button:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+.pagination button:not(:disabled):hover {
+  background: #007bff;
+  color: white;
+}

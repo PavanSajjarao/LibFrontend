@@ -1,5 +1,8 @@
-<nav>
-    <a routerLink="/signup">Sign Up</a>
-    <a routerLink="/login">Login</a>
-    <button (click)="logout()" *ngIf="authService.getToken()">Logout</button>
-  </nav>
+<nav class="navbar">
+  <ng-container *ngIf="!authService.getToken()">
+    <a routerLink="/signup" class="nav-link">Sign Up</a>
+    <a routerLink="/login" class="nav-link">Login</a>
+  </ng-container>
+
+  <button (click)="logout()" *ngIf="authService.getToken()" class="logout-button">Logout</button>
+</nav>

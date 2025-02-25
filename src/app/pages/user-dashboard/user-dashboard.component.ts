@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { BookListComponent } from "../user-dashboard/books/book-list/book-list.component";
 
 @Component({
   selector: 'app-user-dashboard',
-  imports: [],
+  imports: [BookListComponent],
   templateUrl: './user-dashboard.component.html',
   styleUrl: './user-dashboard.component.css'
 })

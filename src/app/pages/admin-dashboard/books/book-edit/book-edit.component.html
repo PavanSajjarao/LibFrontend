@@ -1,102 +1,86 @@
 <div class="book-edit">
-    <h2>Edit Book</h2>
-    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-      <!-- Title -->
-      <div>
-        <label for="title">Title:</label>
-        <input id="title" type="text" formControlName="title" />
-        <div *ngIf="bookForm.get('title')?.invalid && (bookForm.get('title')?.dirty || bookForm.get('title')?.touched)">
-          <small class="error" *ngIf="bookForm.get('title')?.errors?.['required']">
-            Title is required.
-          </small>
-        </div>
-      </div>
-  
-      <!-- Description -->
-      <div>
-        <label for="description">Description:</label>
-        <textarea id="description" formControlName="description"></textarea>
-        <div *ngIf="bookForm.get('description')?.invalid && (bookForm.get('description')?.dirty || bookForm.get('description')?.touched)">
-          <small class="error" *ngIf="bookForm.get('description')?.errors?.['required']">
-            Description is required.
-          </small>
-        </div>
-      </div>
-  
-      <!-- Author -->
-      <div>
-        <label for="author">Author:</label>
-        <input id="author" type="text" formControlName="author" />
-        <div *ngIf="bookForm.get('author')?.invalid && (bookForm.get('author')?.dirty || bookForm.get('author')?.touched)">
-          <small class="error" *ngIf="bookForm.get('author')?.errors?.['required']">
-            Author is required.
-          </small>
-        </div>
-      </div>
-  
-      <!-- Price -->
-      <div>
-        <label for="price">Price:</label>
-        <input id="price" type="number" formControlName="price" />
-        <div *ngIf="bookForm.get('price')?.invalid && (bookForm.get('price')?.dirty || bookForm.get('price')?.touched)">
-          <small class="error" *ngIf="bookForm.get('price')?.errors?.['required']">
-            Price is required.
-          </small>
-          <small class="error" *ngIf="bookForm.get('price')?.errors?.['pattern']">
-            Invalid price format. Example: 19.99
-          </small>
-        </div>
-      </div>
-  
-      <!-- Category -->
-      <div>
-        <label for="category">Category:</label>
-        <select id="category" formControlName="category">
-          <option value="">--Select Category--</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Classics">Classics</option>
-          <option value="Crime">Crime</option>
-          <option value="Fantasy">Fantasy</option>
-        </select>
-        <div *ngIf="bookForm.get('category')?.invalid && (bookForm.get('category')?.dirty || bookForm.get('category')?.touched)">
-          <small class="error" *ngIf="bookForm.get('category')?.errors?.['required']">
-            Category is required.
-          </small>
-        </div>
-      </div>
-  
-      <!-- Cover Image File Upload -->
-      <div>
-        <label for="coverImage">Cover Image:</label>
-        <input
-          id="coverImage"
-          type="file"
-          accept="image/png, image/jpeg, image/jpg"
-          (change)="onFileSelected($event)"
-        />
-        <div *ngIf="coverImageError" class="error">
-          {{ coverImageError }}
-        </div>
-      </div>
-  
-      <!-- Progress Bar -->
-      <div *ngIf="uploadProgress >= 0" style="margin-top:10px;">
-        <progress [value]="uploadProgress" max="100" style="width:100%;"></progress>
-        <span>{{ uploadProgress }}%</span>
-      </div>
-  
-      <!-- Image Preview -->
-      <div *ngIf="imageUrl" style="margin-top:10px;">
-        <p>Image Preview:</p>
-        <img [src]="imageUrl" alt="Image Preview" style="max-width:300px;">
-      </div>
-  
-      <!-- Global Error Message -->
-      <div *ngIf="errorMessage" class="error">
-        {{ errorMessage }}
-      </div>
-  
-      <button type="submit" [disabled]="bookForm.invalid">Update Book</button>
-    </form>
-  </div>
-  
+  <h2 class="edit-title">Edit Book</h2>
+
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="edit-form">
+    <!-- Title -->
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input id="title" type="text" formControlName="title" class="form-control"/>
+      <small *ngIf="bookForm.get('title')?.invalid && (bookForm.get('title')?.dirty || bookForm.get('title')?.touched)" class="error">
+        Title is required.
+      </small>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" class="form-control"></textarea>
+      <small *ngIf="bookForm.get('description')?.invalid && (bookForm.get('description')?.dirty || bookForm.get('description')?.touched)" class="error">
+        Description is required.
+      </small>
+    </div>
+
+    <!-- Author -->
+    <div class="form-group">
+      <label for="author">Author</label>
+      <input id="author" type="text" formControlName="author" class="form-control"/>
+      <small *ngIf="bookForm.get('author')?.invalid && (bookForm.get('author')?.dirty || bookForm.get('author')?.touched)" class="error">
+        Author is required.
+      </small>
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input id="price" type="number" formControlName="price" class="form-control"/>
+      <small *ngIf="bookForm.get('price')?.invalid && (bookForm.get('price')?.dirty || bookForm.get('price')?.touched)" class="error">
+        Price is required.
+      </small>
+      <small *ngIf="bookForm.get('price')?.errors?.['pattern']" class="error">
+        Invalid price format. Example: 19.99
+      </small>
+    </div>
+
+    <!-- Category -->
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" formControlName="category" class="form-control">
+        <option value="">--Select Category--</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Classics">Classics</option>
+        <option value="Crime">Crime</option>
+        <option value="Fantasy">Fantasy</option>
+      </select>
+      <small *ngIf="bookForm.get('category')?.invalid && (bookForm.get('category')?.dirty || bookForm.get('category')?.touched)" class="error">
+        Category is required.
+      </small>
+    </div>
+
+    <!-- Cover Image Upload -->
+    <div class="form-group">
+      <label for="coverImage">Cover Image</label>
+      <input id="coverImage" type="file" accept="image/png, image/jpeg, image/jpg" (change)="onFileSelected($event)" class="form-control"/>
+      <small *ngIf="coverImageError" class="error">{{ coverImageError }}</small>
+    </div>
+
+    <!-- Upload Progress -->
+    <div *ngIf="uploadProgress >= 0" class="progress-container">
+      <progress [value]="uploadProgress" max="100" class="progress-bar"></progress>
+      <span>{{ uploadProgress }}%</span>
+    </div>
+
+    <!-- Image Preview -->
+    <div *ngIf="imageUrl" class="image-preview">
+      <p>Image Preview:</p>
+      <img [src]="imageUrl" alt="Image Preview" class="preview-img">
+    </div>
+
+    <!-- Global Error Message -->
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="bookForm.invalid" class="submit-btn">Update Book</button>
+  </form>
+</div>

@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   imports:[ReactiveFormsModule , CommonModule],
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrls:['./login.component.css'],
 })
 export class LoginComponent {
   loginForm: FormGroup;
