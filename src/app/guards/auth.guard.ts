@@ -11,6 +11,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
     if (!this.authService.getToken()) {
       this.router.navigate(['/login']);
+      window.alert("Please Login/ signin first"); //I have to chnage to the toaster.
       return false;
     }
     return true;

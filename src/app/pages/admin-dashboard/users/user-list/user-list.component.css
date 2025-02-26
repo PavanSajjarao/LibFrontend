@@ -1,0 +1,100 @@
+/* Container Styling */
+.user-list-container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.user-list-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+thead {
+  background: #f4f4f4;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  font-weight: bold;
+  background: #f8f9fa;
+  color: #333;
+}
+
+tr:hover {
+  background: #f9f9f9;
+}
+
+/* Button Styling */
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Edit Button */
+button:first-child {
+  background-color: #007bff;
+  color: white;
+  margin-right: 5px;
+}
+
+/* Delete Button */
+button:last-child {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Pagination */
+.pagination-controls {
+  margin-top: 20px;
+}
+
+.pagination-controls button {
+  padding: 8px 12px;
+  border: none;
+  background: #ddd;
+  margin: 3px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination-controls button.active {
+  background: #ff6600;
+  color: white;
+  font-weight: bold;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

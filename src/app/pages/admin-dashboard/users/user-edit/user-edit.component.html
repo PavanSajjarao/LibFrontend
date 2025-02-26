@@ -1,1 +1,28 @@
-<p>user-edit works!</p>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" type="text" />
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" type="email" />
+  </div>
+
+  <div *ngIf="rolesFormArray && rolesFormArray.controls.length > 0">
+    <label>Roles:</label>
+    <div *ngFor="let roleControl of rolesFormArray.controls; let i = index">
+      <label>
+        <input 
+          type="checkbox" 
+          [formControl]="roleControl" 
+          (change)="onRoleChange(i, roleControl.value)" />
+        {{ roles[i] }}
+      </label>
+    </div>
+  </div>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <button type="submit" [disabled]="userForm.invalid">Update User</button>
+</form>

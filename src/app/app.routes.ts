@@ -14,6 +14,9 @@ import { BookEditComponent } from './pages/admin-dashboard/books/book-edit/book-
 import { HomeComponent } from './pages/home/home.component';
 import { MyborrowsComponent } from './pages/user-dashboard/borrow/myborrows/myborrows.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { UserListComponent } from './pages/admin-dashboard/users/user-list/user-list.component';
+import { UserEditComponent } from './pages/admin-dashboard/users/user-edit/user-edit.component';
+
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirects '/' to '/home'
   { path: 'login', component: LoginComponent },
@@ -29,13 +32,15 @@ export const routes: Routes = [
 
   { path: 'moderator-dashboard', component: ModeratorDashboardComponent, canActivate: [AuthGuard] , data: { roles: ['moderator'] } },
 
-  //ADMIN ROUTES
+  //ADMIN[Books]
   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },
   { path: 'admin-dashboard/books', component: BookListComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },
   { path: 'admin-dashboard/books/add', component: BookAddComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },
   { path: 'admin-dashboard/books/:id/edit', component: BookEditComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },
 
-  
+  // Admin[Users]
+  { path: 'admin-dashboard/users', component: UserListComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },
+  { path: 'admin-dashboard/users/:id/edit', component: UserEditComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },
  
   { path: 'forbidden', component: ForbiddenComponent },
   { path: '**', component: NotfoundComponent } // Handles unknown routes

@@ -1,1 +1,41 @@
-<p>user-list works!</p>
+<div class="user-list-container">
+    <h2>User List</h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of paginatedUsers">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.createdAt | date: 'MMM d, y h:mm a' }}</td>
+          <td>
+            <button (click)="onEdit(user)">Edit</button>
+            <button (click)="deleteUser(user._id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&lt;</button>
+  
+      <button *ngFor="let page of [].constructor(totalPages); let i = index" 
+              (click)="changePage(i + 1)" 
+              [class.active]="currentPage === i + 1">
+        {{ i + 1 }}
+      </button>
+  
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">&gt;</button>
+    </div>
+  </div>
+  

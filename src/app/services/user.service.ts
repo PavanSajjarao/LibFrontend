@@ -6,7 +6,7 @@ export interface User {
   _id: string;
   name: string;
   email: string;
-  role: string;
+  role: string[];
   isDeleted: boolean;
   createdAt: string;
   updatedAt: string;
@@ -45,12 +45,6 @@ export class UserService {
   updateUser(userId: string, user: Partial<User>): Observable<User> {
     const headers = this.getAuthHeaders();
     return this.http.put<User>(`${this.apiUrl}/${userId}`, user, { headers });
-  }
-
-  // Delete a user
-  deleteUser(userId: string): Observable<void> {
-    const headers = this.getAuthHeaders();
-    return this.http.delete<void>(`${this.apiUrl}/${userId}`, { headers });
   }
 
   // Soft delete a user
