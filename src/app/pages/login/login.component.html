@@ -2,11 +2,17 @@
   <div class="login-card">
     <h2 class="login-title">Login</h2>
     <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+      
       <label for="email">Email</label>
       <input id="email" formControlName="email" placeholder="Enter your email" type="email" required />
 
       <label for="password">Password</label>
       <input id="password" formControlName="password" placeholder="Enter your password" type="password" required />
+
+      <label for="role">Select Role</label>
+      <select id="role" formControlName="selectedRole" class="role-dropdown">
+        <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+      </select>
 
       <button type="submit" class="login-button">Login</button>
     </form>

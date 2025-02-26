@@ -52,7 +52,25 @@
     font-size: 16px;
     transition: all 0.3s ease-in-out;
   }
-  
+  /* Role Dropdown */
+.role-dropdown {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Dropdown focus effect */
+.role-dropdown:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
   /* Input focus effect */
   .login-form input:focus {
     border-color: #007bff;
