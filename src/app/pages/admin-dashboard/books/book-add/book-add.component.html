@@ -97,6 +97,7 @@
       {{ errorMessage }}
     </div>
     <button type="button" (click)="onCancel()" class="cancel-btn">Cancel</button>
+    <br>
     <!-- Submit Button -->
     <button type="submit" [disabled]="bookForm.invalid || !imageUrl">Add Book</button>
   </form>

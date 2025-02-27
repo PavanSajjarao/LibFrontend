@@ -1,0 +1,39 @@
+<div class="borrow-history-container">
+    <h2 class="title">Borrow History</h2>
+  
+    <table class="borrow-table">
+      <thead>
+        <tr>
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Book Title</th>
+          <th>Author</th>
+          <th>Price</th>
+          <th>Borrowed Date</th>
+          <th>Due Date</th>
+          <th>Returned</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let history of paginatedHistory">
+          <td>{{ history.userId?.name }}</td>
+          <td>{{ history.userId?.email }}</td>
+          <td>{{ history.bookId?.title }}</td>
+          <td>{{ history.bookId?.author }}</td>
+          <td>{{ history.bookId?.price | currency }}</td>
+          <td>{{ history.borrowedDate | date: selectedFormat }}</td>
+          <td>{{ history.dueDate | date: selectedFormat }}</td>
+          <td class="status" [ngClass]="{'returned': history.returned, 'not-returned': !history.returned}">
+            {{ history.returned ? 'Yes' : 'No' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="pagination-container">
+      <button class="pagination-btn" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+      <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+      <button class="pagination-btn" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  </div>
+  

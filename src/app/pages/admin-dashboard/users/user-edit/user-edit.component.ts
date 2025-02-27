@@ -121,4 +121,7 @@ export class UserEditComponent implements OnInit {
       }
     });
   }
+  onCancel(): void {
+    this.router.navigate(['/admin-dashboard/users']);
+  }
 }
