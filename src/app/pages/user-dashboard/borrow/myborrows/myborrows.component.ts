@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { BorrowService } from '../../../../services/borrow.service';
-import { AuthService } from '../../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrService } from 'ngx-toastr';
+import { BorrowService } from '../../../../services/borrow.service';
+import { AuthService } from '../../../../services/auth.service';
+import { DateFormatService } from '../../../../services/date-format.service';
+
+
 
 @Component({
-  imports: [CommonModule, NgxPaginationModule],
   selector: 'app-my-borrows',
+  imports: [CommonModule, NgxPaginationModule], 
   templateUrl: './myborrows.component.html',
   styleUrls: ['./myborrows.component.css']
 })
@@ -17,6 +20,7 @@ export class MyBorrowsComponent implements OnInit {
   isLoading = false;
   isReturning = false;
   today = new Date();
+  selectedFormat:string = 'MM/dd/yyyy';
 
   // Pagination
   currentPage = 1;
@@ -25,10 +29,14 @@ export class MyBorrowsComponent implements OnInit {
   constructor(
     private borrowService: BorrowService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dateFormatService: DateFormatService
   ) {}
 
   ngOnInit(): void {
+    this.dateFormatService.dateFormat$.subscribe(format => {
+      this.selectedFormat = format;
+    });
     this.userId = this.authService.getUserId();
     
     if (!this.userId) {

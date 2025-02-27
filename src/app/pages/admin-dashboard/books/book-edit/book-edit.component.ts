@@ -145,4 +145,11 @@ export class BookEditComponent implements OnInit {
       }
     });
   }
+
+  onCancel(): void {
+    if (this.bookForm.dirty && !confirm('Are you sure you want to cancel? Unsaved changes will be lost.')) {
+      return;
+    }
+    this.router.navigate(['/admin-dashboard/books']);
+  }
 }

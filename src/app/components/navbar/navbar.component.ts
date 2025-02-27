@@ -2,28 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { DateFormatService } from '../../services/date-format.service';
+import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 @Component({
-  imports:[CommonModule , RouterLink],
+  imports:[CommonModule , RouterLink ,FormsModule],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
-  userRole: string | null = null;
+export class NavbarComponent {
 
-  constructor(public authService: AuthService, private router: Router) {}
+  userRole: string | null;
+  selectedFormat:string = 'MM/dd/yyyy';
+  constructor(
+    private dateFormatService: DateFormatService,
+    public authService: AuthService
 
-  ngOnInit() {
-    // Subscribe to role changes
-    this.authService.userRole$.subscribe((role) => {
-      this.userRole = role;
-      console.log("Updated User Role:", this.userRole);
-    });
+  ) {
+  
+    this.userRole = localStorage.getItem('role'); // Assuming userRole is stored in localStorage
   }
+updateDateFormat() {
+    this.dateFormatService.setDateFormat(this.selectedFormat);
+  }
+
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
   }
 }
+

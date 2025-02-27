@@ -31,9 +31,9 @@
         </td>
         <td>{{ book.bookId?.title || 'Unknown Title' }}</td>
         <td>{{ book.bookId?.author || 'Unknown Author' }}</td>
-        <td>{{ book.borrowedDate | date: 'mediumDate' }}</td>
+        <td>{{ book.borrowedDate | date: selectedFormat }}</td>
         <td [ngClass]="{'overdue': book.dueDate && (book.dueDate < today)}">
-          {{ book.dueDate | date: 'mediumDate' }}
+          {{ book.dueDate | date:selectedFormat }}
         </td>
         <td>
           <button 

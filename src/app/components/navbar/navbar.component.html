@@ -17,6 +17,14 @@
     <a routerLink="/login" routerLinkActive="active-link" class="nav-link">Login</a>
   </ng-container>
 
+  <!-- Date Format Dropdown -->
+  <label>Select Date Format:</label>
+  <select [(ngModel)]="selectedFormat" (change)="updateDateFormat()">
+    <option value="MM/dd/yyyy">MM/DD/YYYY</option>
+    <option value="dd/MM/yyyy">DD/MM/YYYY</option>
+    <option value="yyyy-MM-dd">YYYY-MM-DD</option>
+    <option value="MMM d, yyyy, h:mm a">MMM D, YYYY, h:mm A</option>
+  </select>
   <!-- Logout Button -->
   <button (click)="logout()" *ngIf="authService.getToken()" class="logout-button">Logout</button>
 </nav>

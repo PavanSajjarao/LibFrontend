@@ -8,6 +8,7 @@
   gap: 15px;
 }
 
+/* Navigation Links */
 .nav-link {
   color: white;
   text-decoration: none;
@@ -23,7 +24,7 @@
 }
 
 /* Active Link Style */
-.active-link {
+.nav-link.active-link {
   background: #00bcd4; /* Beautiful cyan-blue */
   color: white;
   font-weight: bold;
@@ -45,4 +46,55 @@
 
 .logout-button:hover {
   background-color: #cc0000;
+}
+
+/* Date Format Dropdown */
+.date-format-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: white;
+  font-size: 1em;
+}
+
+/* Dropdown Label */
+.date-format-selector label {
+  font-weight: bold;
+  color: #00bcd4;
+}
+
+/* Styled Dropdown */
+.date-format-selector select {
+  background: #444;
+  color: white;
+  border: 1px solid #00bcd4;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1em;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/* Dropdown on Hover */
+.date-format-selector select:hover {
+  background: #555;
+  border-color: #00e5ff;
+}
+
+/* Styled Dropdown Options */
+.date-format-selector select option {
+  background: #333;
+  color: white;
+  padding: 10px;
+  font-size: 1em;
+}
+
+/* On Option Hover */
+.date-format-selector select option:hover {
+  background: #00bcd4;
+  color: white;
 }

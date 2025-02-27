@@ -114,7 +114,19 @@
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
   }
-  
+  .cancel-btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    background: tomato;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .cancel-btn:hover {
+    background: #dc35469d;
+  }
   .submit-btn:hover {
     background: #0056b3;
   }
