@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService, User } from '../../../../services/user.service';
 import { CommonModule } from '@angular/common';
+import { DateFormatService } from '../../../../services/date-format.service';
 
 @Component({
   imports:[CommonModule],
@@ -15,11 +16,15 @@ export class UserListComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 5; // Users per page
   totalPages: number = 0;
+  selectedFormat:string = 'MM/dd/yyyy';
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router , private dateFormatService: DateFormatService) {}
 
   ngOnInit(): void {
     this.loadUsers();
+    this.dateFormatService.dateFormat$.subscribe(format => {
+      this.selectedFormat = format;
+    });
   }
 
   loadUsers(): void {

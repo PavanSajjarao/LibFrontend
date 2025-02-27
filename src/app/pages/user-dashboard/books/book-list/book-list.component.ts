@@ -5,6 +5,7 @@ import { BorrowService } from '../../../../services/borrow.service';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { jwtDecode } from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
+import { DateFormatService } from '../../../../services/date-format.service';
 
 interface JwtPayload {
   id: string;
@@ -19,23 +20,28 @@ interface JwtPayload {
 })
 export class BookListComponent implements OnInit {
   books: Book[] = [];
-  borrowedBooks: Set<string> = new Set(); 
+  borrowedBooks: Set<string> = new Set(); // Stores IDs of borrowed books
   currentPage: number = 1;
   keyword: string = '';
   pageSize: number = 10;
   hasNextPage: boolean = false;
   isLoading: boolean = false;
+  selectedFormat:string = 'MM/dd/yyyy';
 
   constructor(
     private bookService: BookService,
     private borrowService: BorrowService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dateFormatService: DateFormatService
   ) {}
 
   ngOnInit(): void {
     this.loadBooks();
-    this.loadBorrowedBooksFromLocalStorage();
+    this.loadBorrowedBooks();
+    this.dateFormatService.dateFormat$.subscribe(format => {
+      this.selectedFormat = format;
+    });
   }
 
   loadBooks(): void {
@@ -63,12 +69,20 @@ export class BookListComponent implements OnInit {
     });
   }
 
-  loadBorrowedBooksFromLocalStorage(): void {
-    const storedBooks = localStorage.getItem('borrowedBooks');
-    if (storedBooks) {
-      this.borrowedBooks = new Set(JSON.parse(storedBooks));
-    }
+  loadBorrowedBooks(): void {
+    const userId = this.extractUserIdFromToken();
+    if (!userId) return;
+  
+    this.borrowService.getUserBorrowedBooks(userId).subscribe({
+      next: (borrowedBooks: { bookId: { _id: string } }[]) => { 
+        this.borrowedBooks = new Set(borrowedBooks.map(b => b.bookId._id)); // Extract book _id
+      },
+      error: (err) => {
+        console.error('Error fetching borrowed books:', err);
+      }
+    });
   }
+  
 
   onNextPage(): void {
     if (this.hasNextPage) {
@@ -107,7 +121,7 @@ export class BookListComponent implements OnInit {
     }
 
     if (this.borrowedBooks.has(book._id)) {
-      this.toastr.info('You have already borrowed this book.', 'Info');
+      this.toastr.error('You have already borrowed this book.', 'Error');
       return;
     }
 
@@ -118,18 +132,12 @@ export class BookListComponent implements OnInit {
       .subscribe({
         next: () => {
           this.toastr.success(`Successfully borrowed ${book.title}. Due date: ${dueDate.toDateString()}`, 'Success');
-          this.borrowedBooks.add(book._id);
-          localStorage.setItem('borrowedBooks', JSON.stringify(Array.from(this.borrowedBooks)));
+          this.borrowedBooks.add(book._id); // Update borrowed books
         },
         error: (err) => {
           this.toastr.error('Borrow request failed. Try again later.', 'Error');
           console.error('Borrow error:', err);
         }
       });
-  }
-
-  clearBorrowedBooks(): void {
-    localStorage.removeItem('borrowedBooks');
-    this.borrowedBooks.clear();
   }
 }

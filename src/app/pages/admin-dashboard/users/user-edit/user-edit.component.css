@@ -1,55 +1,93 @@
-.edit-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .edit-modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
-  
-  .roles-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 10px;
-  }
-  
-  .roles-container label {
-    margin: 5px 0;
-    font-size: 14px;
-  }
-  
-  .edit-modal input[type="checkbox"] {
-    margin-right: 8px;
-  }
-  
-  .edit-modal button {
-    margin-top: 15px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .edit-modal button:first-child {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  .edit-modal button:last-child {
-    background-color: #dc3545;
-    color: white;
-  }
-  
+/* Form Container */
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #222;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: auto;
+  color: white;
+  margin-top: 20px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Label Styles */
+.form-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Input Fields */
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #00bcd4;
+  border-radius: 5px;
+  font-size: 1em;
+  background: #333;
+  color: white;
+  outline: none;
+  transition: border-color 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* Input Hover & Focus */
+.form-input:hover, .form-input:focus {
+  border-color: #00e5ff;
+  background: #444;
+}
+
+/* Roles Section */
+.role-group {
+  margin-top: 10px;
+}
+
+/* Checkbox Labels */
+.role-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Checkboxes */
+.form-checkbox {
+  accent-color: #00bcd4;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* Error Message */
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+/* Submit Button */
+.submit-button {
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background 0.3s ease-in-out;
+}
+
+.submit-button:hover {
+  background-color: #0097a7;
+}
+
+.submit-button:disabled {
+  background: #555;
+  cursor: not-allowed;
+}

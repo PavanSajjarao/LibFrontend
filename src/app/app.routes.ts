@@ -25,7 +25,7 @@ export const routes: Routes = [
  //UserRoutes
 
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard , RoleGuard], data: { roles: ['user'] }},
-  { path: 'user-dashboard', component: UserDashboardComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['user'] }},
+  // { path: 'user-dashboard', component: UserDashboardComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['user'] }},
   {path:'user-dashboard/myborrows' , component:MyBorrowsComponent , canActivate:[AuthGuard , RoleGuard] , data: { roles: ['user'] }},
 
   //Moderate Routes
@@ -33,7 +33,7 @@ export const routes: Routes = [
   { path: 'moderator-dashboard', component: ModeratorDashboardComponent, canActivate: [AuthGuard] , data: { roles: ['moderator'] } },
 
   //ADMIN[Books]
-  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },
+  // { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },
   { path: 'admin-dashboard/books', component: BookListComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },
   { path: 'admin-dashboard/books/add', component: BookAddComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },
   { path: 'admin-dashboard/books/:id/edit', component: BookEditComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },

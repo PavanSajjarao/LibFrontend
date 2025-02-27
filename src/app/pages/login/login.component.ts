@@ -57,9 +57,9 @@ export class LoginComponent {
 
   redirectUser(role: string) {
     const roleRoutes: { [key: string]: string } = {
-      [Role.Admin]: '/admin-dashboard',
+      [Role.Admin]: '/admin-dashboard/books',
       [Role.Moderator]: '/moderator-dashboard',
-      [Role.User]: '/user-dashboard',
+      [Role.User]: '/home',
     };
 
     this.router.navigate([roleRoutes[role] || '/user-dashboard']);

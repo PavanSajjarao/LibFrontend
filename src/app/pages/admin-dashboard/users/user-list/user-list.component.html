@@ -16,7 +16,7 @@
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
-          <td>{{ user.createdAt | date: 'MMM d, y h:mm a' }}</td>
+          <td>{{ user.createdAt | date:selectedFormat }}</td>
           <td>
             <button (click)="onEdit(user)">Edit</button>
             <button (click)="deleteUser(user._id)">Delete</button>

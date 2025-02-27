@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { BookService, Book } from '../../../../services/book.service';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
+import { DateFormatService } from '../../../../services/date-format.service';
 
 @Component({
   imports:[CommonModule , CurrencyPipe , DatePipe , RouterLink],
@@ -17,11 +18,15 @@ export class BookListComponent implements OnInit {
   keyword: string = '';
   pageSize: number = 10; // Should match your backend's resPerPage value
   hasNextPage: boolean = false;
+  selectedFormat:string = 'MM/dd/yyyy';
 
-  constructor(private bookService: BookService, private router: Router) {}
+  constructor(private bookService: BookService, private router: Router , private dateFormatService: DateFormatService) {}
 
   ngOnInit(): void {
     this.loadBooks();
+    this.dateFormatService.dateFormat$.subscribe(format => {
+      this.selectedFormat = format;
+    });
   }
 
   loadBooks(): void {

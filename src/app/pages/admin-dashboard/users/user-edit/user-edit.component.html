@@ -1,28 +1,30 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="name">Name:</label>
-    <input id="name" formControlName="name" type="text" />
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+  <div class="form-group">
+    <label for="name" class="form-label">Name:</label>
+    <input id="name" formControlName="name" type="text" class="form-input" />
   </div>
 
-  <div>
-    <label for="email">Email:</label>
-    <input id="email" formControlName="email" type="email" />
+  <div class="form-group">
+    <label for="email" class="form-label">Email:</label>
+    <input id="email" formControlName="email" type="email" class="form-input" />
   </div>
 
-  <div *ngIf="rolesFormArray && rolesFormArray.controls.length > 0">
-    <label>Roles:</label>
-    <div *ngFor="let roleControl of rolesFormArray.controls; let i = index">
+  <div class="form-group role-group" *ngIf="rolesFormArray && rolesFormArray.controls.length > 0">
+    <label class="form-label">Roles:</label>
+    <div *ngFor="let roleControl of rolesFormArray.controls; let i = index" class="role-checkbox">
       <label>
         <input 
           type="checkbox" 
           [formControl]="roleControl" 
-          (change)="onRoleChange(i, roleControl.value)" />
+          (change)="onRoleChange(i, roleControl.value)" 
+          class="form-checkbox"
+        />
         {{ roles[i] }}
       </label>
     </div>
   </div>
 
-  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
 
-  <button type="submit" [disabled]="userForm.invalid">Update User</button>
+  <button type="submit" [disabled]="userForm.invalid" class="submit-button">Update User</button>
 </form>

@@ -18,7 +18,7 @@
         <p class="book-description">{{ book.description }}</p>
         <p class="book-price">Price: <strong>{{ book.price | currency }}</strong></p>
         <p class="book-category">Category: <span>{{ book.category }}</span></p>
-        <p class="book-date">Added on: <span>{{ book.createdAt | date:'medium' }}</span></p>
+        <p class="book-date">Added on: <span>{{ book.createdAt | date:selectedFormat }}</span></p>
 
         <button class="borrow-button"
                 (click)="onBorrow(book)"

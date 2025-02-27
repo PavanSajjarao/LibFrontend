@@ -37,6 +37,7 @@ export class MyBorrowsComponent implements OnInit {
     this.dateFormatService.dateFormat$.subscribe(format => {
       this.selectedFormat = format;
     });
+    
     this.userId = this.authService.getUserId();
     
     if (!this.userId) {

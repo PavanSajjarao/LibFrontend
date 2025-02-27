@@ -22,7 +22,7 @@
         <td>{{ book.author }}</td>
         <td>{{ book.price | currency }}</td>
         <td>{{ book.category }}</td>
-        <td>{{ book.createdAt | date:'medium' }}</td>
+        <td>{{ book.createdAt | date: selectedFormat }}</td>
         <td class="actions">
           <button class="edit-btn" (click)="onEdit(book)">Edit</button>
           <button class="delete-btn" (click)="onDelete(book._id)">Delete</button>
