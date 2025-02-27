@@ -15,7 +15,7 @@ export class BookListComponent implements OnInit {
   books: Book[] = [];
   currentPage: number = 1;
   keyword: string = '';
-  pageSize: number = 2; // Should match your backend's resPerPage value
+  pageSize: number = 10; // Should match your backend's resPerPage value
   hasNextPage: boolean = false;
 
   constructor(private bookService: BookService, private router: Router) {}

@@ -1,0 +1,62 @@
+.borrowed-books-container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .borrowed-books-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .borrowed-books-table th, 
+  .borrowed-books-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .borrowed-books-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .book-cover {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .return-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .return-button:hover {
+    background-color: #c0392b;
+  }
+
+  .overdue {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .book-cover {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+  }
+  
+  .return-button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+  
+  

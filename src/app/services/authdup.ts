@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core'; 
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode }from 'jwt-decode';
 
 interface SignUpDto {
   name: string;
@@ -31,20 +31,13 @@ interface JwtPayload {
 export class AuthService {
   private apiUrl = 'http://localhost:3000/auth'; // Adjust API URL
 
-  // BehaviorSubject to store and track role changes
-  private userRoleSubject = new BehaviorSubject<string | null>(this.getSelectedUserRole());
-  userRole$ = this.userRoleSubject.asObservable(); // Expose it as Observable
-
   constructor(private http: HttpClient) {}
 
   signUp(signUpDto: SignUpDto): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/signup`, signUpDto).pipe(
       tap((res) => {
         localStorage.setItem('token', res.token);
-        const decoded: JwtPayload = jwtDecode(res.token);
-        const role = decoded.role[0]; // Get first role
-        localStorage.setItem('role', role);
-        this.userRoleSubject.next(role); // Notify all components
+        localStorage.setItem('role' , "user" );
       })
     );
   }
@@ -52,21 +45,15 @@ export class AuthService {
   login(loginDto: LoginDto): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, loginDto).pipe(
       tap((res) => {
-        localStorage.setItem('token', res.token);
-        const decoded: JwtPayload = jwtDecode(res.token);
-        const role = decoded.role[0];
-        localStorage.setItem('role', role);
-        this.userRoleSubject.next(role); // Notify all components
+        // localStorage.setItem('token', res.token);
       })
     );
   }
 
-  logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role'); 
-    this.userRoleSubject.next(null); // Notify components that role is now null
-    window.location.reload();
-  }
+  // logout() {
+  //   localStorage.removeItem('token');
+  //   localStorage.removeItem('role');
+  // }
 
   getToken(): string | null {
     return localStorage.getItem('token');
@@ -86,7 +73,40 @@ export class AuthService {
     return null;
   }
 
+  getUserRoles(): string[] {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const decoded: JwtPayload = jwtDecode(token);
+        return decoded.role || [];
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        return [];
+      }
+    }
+    return [];
+  }
+
   getSelectedUserRole(): string | null {
     return localStorage.getItem('role'); 
+  }
+
+  setSelectedUserRole(role: string): void {
+    localStorage.setItem('role', role); // Set role in local storage
+  }
+
+  getUserRolesAPI(userId: string): Observable<{ roles: string[] }> {
+    return this.http.get<{ roles: string[] }>(`http://localhost:3000/users/${userId}/roles`).pipe(
+      tap((res) => {
+        localStorage.setItem('role', JSON.stringify(res.roles)); // Store roles in localStorage
+      })
+    );
+  }
+  
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role'); 
+    window.location.reload();
   }
 }

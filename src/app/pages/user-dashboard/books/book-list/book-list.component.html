@@ -1,30 +1,37 @@
 <div class="book-dashboard">
-    <h2>Available Books</h2>
-    <div class="book-list">
-      <div class="book-card" *ngFor="let book of books">
-        <div class="book-image-container">
-          <img [src]="book.imageUrl ? book.imageUrl : 'https://images.unsplash.com/photo-1735776327649-eeb6b6ed8829?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'" 
-               alt="{{ book.title }} cover" class="book-image" />
-        </div>
-        <div class="book-info">
-          <h3 class="book-title">{{ book.title }}</h3>
-          <p class="book-author">by <span>{{ book.author }}</span></p>
-          <p class="book-description">{{ book.description }}</p>
-          <p class="book-price">Price: <strong>{{ book.price | currency }}</strong></p>
-          <p class="book-category">Category: <span>{{ book.category }}</span></p>
-          <p class="book-date">Added on: <span>{{ book.createdAt | date:'medium' }}</span></p>
-          <button class="borrow-button" (click)="onBorrow(book)">Borrow</button>
-          
-        </div>
+  <h2>Available Books</h2>
+
+  <div *ngIf="isLoading" class="loading-message">Loading books...</div>
+  <div *ngIf="!isLoading && books.length === 0" class="no-books-message">
+    No books available at the moment.
+  </div>
+
+  <div class="book-list" *ngIf="books.length > 0">
+    <div class="book-card" *ngFor="let book of books">
+      <div class="book-image-container">
+        <img [src]="book.imageUrl ? book.imageUrl : 'https://images.unsplash.com/photo-1737845079400-1d04c3f2ab5d?q=80&w=1575&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'" 
+             alt="{{ book.title }} cover" class="book-image" />
+      </div>
+      <div class="book-info">
+        <h3 class="book-title">{{ book.title }}</h3>
+        <p class="book-author">by <span>{{ book.author }}</span></p>
+        <p class="book-description">{{ book.description }}</p>
+        <p class="book-price">Price: <strong>{{ book.price | currency }}</strong></p>
+        <p class="book-category">Category: <span>{{ book.category }}</span></p>
+        <p class="book-date">Added on: <span>{{ book.createdAt | date:'medium' }}</span></p>
+
+        <button class="borrow-button"
+                (click)="onBorrow(book)"
+                [disabled]="borrowedBooks.has(book._id)">
+          {{ borrowedBooks.has(book._id) ? 'Borrowed' : 'Borrow' }}
+        </button>
       </div>
     </div>
-    
-    <div class="pagination">
-      <button class="page-button" (click)="onPrevPage()" [disabled]="currentPage === 1">Previous</button>
-      <span class="page-info">Page {{ currentPage }}</span>
-      <button class="page-button" (click)="onNextPage()" [disabled]="!hasNextPage">Next</button>
-    </div>
   </div>
-  
 
-  
+  <div class="pagination">
+    <button class="page-button" (click)="onPrevPage()" [disabled]="currentPage === 1">Previous</button>
+    <span class="page-info">Page {{ currentPage }}</span>
+    <button class="page-button" (click)="onNextPage()" [disabled]="!hasNextPage">Next</button>
+  </div>
+</div>

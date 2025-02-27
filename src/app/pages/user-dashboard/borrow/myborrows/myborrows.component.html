@@ -1,1 +1,52 @@
-<p>myborrows works!</p>
+<div class="borrowed-books-container">
+  <h2>My Borrowed Books</h2>
+
+  <!-- Loading Indicator -->
+  <p *ngIf="isLoading">Loading borrowed books...</p>
+
+  <!-- No Books Message -->
+  <div *ngIf="!isLoading && borrowedBooks.length === 0">
+    <p>You have not borrowed any books.</p>
+  </div>
+
+  <!-- Books Table -->
+  <table *ngIf="!isLoading && borrowedBooks.length > 0" class="borrowed-books-table">
+    <thead>
+      <tr>
+        <th>Cover</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Borrowed Date</th>
+        <th>Due Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of borrowedBooks | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+        <td>
+          <img 
+            [src]="book.bookId?.imageUrl || 'https://images.unsplash.com/photo-1737845079400-1d04c3f2ab5d?q=80&w=1575&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'" 
+            alt="{{ book.bookId?.title || 'Unknown Title' }}" 
+            class="book-cover">
+        </td>
+        <td>{{ book.bookId?.title || 'Unknown Title' }}</td>
+        <td>{{ book.bookId?.author || 'Unknown Author' }}</td>
+        <td>{{ book.borrowedDate | date: 'mediumDate' }}</td>
+        <td [ngClass]="{'overdue': book.dueDate && (book.dueDate < today)}">
+          {{ book.dueDate | date: 'mediumDate' }}
+        </td>
+        <td>
+          <button 
+            (click)="returnBook(book.bookId?._id)" 
+            class="return-button" 
+            [disabled]="isReturning">
+            Return
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination (Hidden when no books) -->
+  <pagination-controls *ngIf="borrowedBooks.length > 0" (pageChange)="currentPage = $event"></pagination-controls>
+</div>

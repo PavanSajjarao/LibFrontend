@@ -1,33 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef } from '@angular/core';
+
 @Component({
-  imports:[CommonModule],
+  imports:[CommonModule , RouterLink],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  isLogoutVisible = false;
+export class NavbarComponent implements OnInit {
   userRole: string | null = null;
 
-  constructor(public authService: AuthService, private router: Router , private cdRef: ChangeDetectorRef) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.userRole = this.authService. getSelectedUserRole();
-    console.log("Current User Role:", this.userRole);
-    this.cdRef.detectChanges();
-  }
-
-  toggleLogout() {
-    this.isLogoutVisible = !this.isLogoutVisible;
+    // Subscribe to role changes
+    this.authService.userRole$.subscribe((role) => {
+      this.userRole = role;
+      console.log("Updated User Role:", this.userRole);
+    });
   }
 
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
-    this.isLogoutVisible = false;
   }
 }

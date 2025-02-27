@@ -12,10 +12,10 @@ import { BookListComponent } from './pages/admin-dashboard/books/book-list/book-
 import { BookAddComponent } from './pages/admin-dashboard/books/book-add/book-add.component';
 import { BookEditComponent } from './pages/admin-dashboard/books/book-edit/book-edit.component';
 import { HomeComponent } from './pages/home/home.component';
-import { MyborrowsComponent } from './pages/user-dashboard/borrow/myborrows/myborrows.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { UserListComponent } from './pages/admin-dashboard/users/user-list/user-list.component';
 import { UserEditComponent } from './pages/admin-dashboard/users/user-edit/user-edit.component';
+import { MyBorrowsComponent } from './pages/user-dashboard/borrow/myborrows/myborrows.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirects '/' to '/home'
@@ -26,7 +26,7 @@ export const routes: Routes = [
 
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard , RoleGuard], data: { roles: ['user'] }},
   { path: 'user-dashboard', component: UserDashboardComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['user'] }},
-  {path:'user-dashboard/myborrows' , component:MyborrowsComponent , canActivate:[AuthGuard , RoleGuard] , data: { roles: ['user'] }},
+  {path:'user-dashboard/myborrows' , component:MyBorrowsComponent , canActivate:[AuthGuard , RoleGuard] , data: { roles: ['user'] }},
 
   //Moderate Routes
 
