@@ -1,142 +1,121 @@
-/* Main container */
+/* General Styling */
 .book-edit {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.edit-title {
+  text-align: center;
+  font-size: 22px;
+  color: #333;
+}
+
+/* Form Styling */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-control {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border 0.3s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: -5px;
+}
+
+/* Buttons */
+.cancel-btn, .submit-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cancel-btn {
+  background: #dc3545;
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background: #c82333;
+}
+
+.submit-btn {
+  background: #007bff;
+  color: #fff;
+}
+
+.submit-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+/* Upload Progress */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+}
+
+/* Image Preview */
+.image-preview {
+  text-align: center;
+}
+
+.preview-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .book-edit {
+    padding: 15px;
   }
-  
-  /* Title */
-  .edit-title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Form styling */
-  .edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  /* Form groups */
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  /* Inputs, Textarea & Select */
-  .form-control {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    transition: border 0.3s, box-shadow 0.3s;
-  }
-  
-  .form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-    outline: none;
-  }
-  
-  /* Textarea */
-  textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
-  
-  /* Error messages */
-  .error {
-    color: #dc3545;
-    font-size: 14px;
-    margin-top: 5px;
-  }
-  
-  /* File Input */
-  input[type="file"] {
-    border: none;
-    padding: 5px;
-  }
-  
-  /* Progress Bar */
-  .progress-container {
-    margin-top: 10px;
-  }
-  
-  .progress-bar {
-    width: 100%;
-    height: 8px;
-    border-radius: 5px;
-    background: #f3f3f3;
-  }
-  
-  .progress-bar::-webkit-progress-value {
-    background: #007bff;
-    border-radius: 5px;
-  }
-  
-  .progress-bar::-webkit-progress-bar {
-    background: #ddd;
-    border-radius: 5px;
-  }
-  
-  /* Image Preview */
-  .image-preview {
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  .preview-img {
-    max-width: 300px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Submit Button */
-  .submit-btn {
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    background: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-  }
-  .cancel-btn {
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    background: tomato;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-  }
-  .cancel-btn:hover {
-    background: #dc35469d;
-  }
-  .submit-btn:hover {
-    background: #0056b3;
-  }
-  
-  .submit-btn:disabled {
-    background: #ddd;
-    cursor: not-allowed;
-  }
-  
-  .submit-btn:active {
-    transform: scale(0.98);
-  }
-  
+}

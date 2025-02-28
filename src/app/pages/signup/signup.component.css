@@ -5,6 +5,7 @@
     align-items: center;
     height: 100vh;
     background: #f4f4f4;
+    
   }
   
   /* Card-style form */
@@ -18,6 +19,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    margin-top: 35px;
   }
   
   /* Title */
@@ -76,11 +78,20 @@
   .signup-button:hover {
     background: #218838;
   }
+
+  /* Disabled button style */
+.signup-button:disabled {
+  background: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
+
   
   /* Error message */
   .error-message {
     color: red;
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 14px;
   }
   

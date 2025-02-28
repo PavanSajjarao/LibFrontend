@@ -30,7 +30,7 @@ export const routes: Routes = [
 
   //Moderate Routes
 
-  { path: 'moderator-dashboard', component: ModeratorDashboardComponent, canActivate: [AuthGuard] , data: { roles: ['moderator'] } },
+  { path: 'moderator-dashboard', component: ModeratorDashboardComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['moderator'] } },
 
   //ADMIN[Books]
   // { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard , RoleGuard] , data: { roles: ['admin'] } },

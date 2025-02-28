@@ -14,7 +14,10 @@
         <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
       </select>
 
-      <button type="submit" class="login-button">Login</button>
+      <!-- Disable button when loading, form is invalid, or error message exists -->
+      <button type="submit" class="login-button" [disabled]="loginForm.invalid || loading">
+        {{ loading ? 'Logging in...' : 'Login' }}
+      </button>
     </form>
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>

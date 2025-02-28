@@ -26,7 +26,7 @@
 
   <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
   <button type="button" (click)="onCancel()" class="cancel-btn">Cancel</button>
-  <br>
+  
 
   <button type="submit" [disabled]="userForm.invalid" class="submit-button">Update User</button>
 </form>

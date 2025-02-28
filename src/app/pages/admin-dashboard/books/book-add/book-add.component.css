@@ -83,6 +83,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease;
+  margin: 10px;
 }
 
 .book-add button:hover {

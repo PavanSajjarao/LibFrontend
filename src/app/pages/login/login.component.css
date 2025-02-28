@@ -1,58 +1,59 @@
 /* Centering the form */
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #f4f4f4;
-  }
-  
-  /* Card-style form */
-  .login-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  /* Title */
-  .login-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  /* Form structure */
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  /* Labels */
-  .login-form label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #555;
-    text-align: left;
-  }
-  
-  /* Input fields */
-  .login-form input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease-in-out;
-  }
-  /* Role Dropdown */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f4f4f4;
+}
+
+/* Card-style form */
+.login-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Title */
+.login-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Form structure */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Labels */
+.login-form label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  text-align: left;
+}
+
+/* Input fields */
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Role Dropdown */
 .role-dropdown {
   width: 100%;
   padding: 12px;
@@ -71,34 +72,40 @@
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-  /* Input focus effect */
-  .login-form input:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  /* Button */
-  .login-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-  }
-  
-  /* Button hover */
-  .login-button:hover {
-    background: #0056b3;
-  }
-  
-  /* Error message */
-  .error-message {
-    color: red;
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  
+/* Input focus effect */
+.login-form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button */
+.login-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Button hover */
+.login-button:hover {
+  background: #0056b3;
+}
+
+/* Disabled Button */
+.login-button:disabled {
+  background: #b3d7ff;  /* Lighter blue to indicate disabled state */
+  cursor: not-allowed; /* Change cursor to indicate button is disabled */
+  opacity: 0.7;
+}
+
+/* Error message */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+}

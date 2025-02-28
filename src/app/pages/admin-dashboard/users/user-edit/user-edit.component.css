@@ -1,93 +1,105 @@
-/* Form Container */
+/* General Form Styling */
 .user-form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background: #222;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-  margin: auto;
-  color: white;
-  margin-top: 20px;
 }
 
-/* Form Group */
+/* Form Groups */
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-/* Label Styles */
+/* Labels */
 .form-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
 }
 
-/* Input Fields */
+/* Inputs */
 .form-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #00bcd4;
-  border-radius: 5px;
-  font-size: 1em;
-  background: #333;
-  color: white;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border 0.3s ease-in-out;
+}
+
+.form-input:focus {
+  border-color: #007bff;
   outline: none;
-  transition: border-color 0.3s ease-in-out, background 0.3s ease-in-out;
 }
 
-/* Input Hover & Focus */
-.form-input:hover, .form-input:focus {
-  border-color: #00e5ff;
-  background: #444;
-}
-
-/* Roles Section */
+/* Role Checkboxes */
 .role-group {
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-/* Checkbox Labels */
 .role-checkbox {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* Checkboxes */
 .form-checkbox {
-  accent-color: #00bcd4;
-  transform: scale(1.2);
   cursor: pointer;
 }
 
 /* Error Message */
 .error-message {
-  color: #ff4d4d;
-  font-size: 0.9em;
-  margin-top: 5px;
+  color: red;
+  font-size: 14px;
+  margin-top: -5px;
 }
 
-/* Submit Button */
-.submit-button {
-  background-color: #00bcd4;
-  color: white;
+/* Buttons */
+.cancel-btn, .submit-button {
+  padding: 10px;
   border: none;
-  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 14px;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 1em;
-  transition: background 0.3s ease-in-out;
+  transition: all 0.3s;
 }
 
-.submit-button:hover {
-  background-color: #0097a7;
+.cancel-btn {
+  background: #dc3545;
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background: #c82333;
+}
+
+.submit-button {
+  background: #007bff;
+  color: #fff;
+  margin-top: 10px;
 }
 
 .submit-button:disabled {
-  background: #555;
+  background: #6c757d;
   cursor: not-allowed;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .user-form {
+    padding: 15px;
+  }
 }

@@ -32,7 +32,7 @@
   
     <div class="pagination-container">
       <button class="pagination-btn" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
-      <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+      <span class="page-info"> Page {{ currentPage }} of {{ totalPages }}</span>
       <button class="pagination-btn" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
     </div>
   </div>

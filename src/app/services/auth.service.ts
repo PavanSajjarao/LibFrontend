@@ -38,16 +38,24 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signUp(signUpDto: SignUpDto): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/signup`, signUpDto).pipe(
-      tap((res) => {
-        localStorage.setItem('token', res.token);
-        const decoded: JwtPayload = jwtDecode(res.token);
-        const role = decoded.role[0]; // Get first role
+  return this.http.post<AuthResponse>(`${this.apiUrl}/signup`, signUpDto).pipe(
+    tap((res) => {
+      localStorage.setItem('token', res.token);
+      const decoded: JwtPayload = jwtDecode(res.token);
+
+      // Check if role exists and is an array before accessing index 0
+      const role = Array.isArray(decoded.role) && decoded.role.length > 0 ? decoded.role[0] : null;
+
+      if (role) {
         localStorage.setItem('role', role);
         this.userRoleSubject.next(role); // Notify all components
-      })
-    );
-  }
+      } else {
+        console.warn('No role found in token');
+      }
+    })
+  );
+}
+
 
   login(loginDto: LoginDto): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, loginDto).pipe(
@@ -89,4 +97,9 @@ export class AuthService {
   getSelectedUserRole(): string | null {
     return localStorage.getItem('role'); 
   }
+
+  setUserRole(role: string | null) {
+    this.userRoleSubject.next(role);
+  }
+
 }

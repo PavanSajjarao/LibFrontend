@@ -17,13 +17,13 @@ export class ForbiddenComponent {
 
     // Set the appropriate redirect link
     if (userRole === 'admin') {
-      this.redirectLink = '/admin-dashboard';
+      this.redirectLink = '/admin-dashboard/books';
       this.redirectText = 'Go to Admin Dashboard';
     } else if (userRole === 'moderator') {
       this.redirectLink = '/moderator-dashboard';
       this.redirectText = 'Go to Moderator Dashboard';
     } else if (userRole === 'user') {
-      this.redirectLink = '/user-dashboard';
+      this.redirectLink = '/home';
       this.redirectText = 'Go to Home';
     }
   }

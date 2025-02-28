@@ -20,38 +20,44 @@ enum Role {
 export class LoginComponent {
   loginForm: FormGroup;
   errorMessage: string = '';
-  selectedRole: string = ''; // Selected role from dropdown
-  roles: string[] = [Role.User, Role.Admin, Role.Moderator]; // Hardcoded roles
+  selectedRole: string = '';
+  roles: string[] = [Role.User, Role.Admin, Role.Moderator];
+  loading: boolean = false; // Track API request state
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      selectedRole: ['', Validators.required], // Store the selected role
+      selectedRole: ['', Validators.required],
     });
   }
 
   login() {
-    if (this.loginForm.invalid) return;
+    if (this.loginForm.invalid || this.loading) return;
+
+    this.loading = true; // Start API request
 
     const { email, password, selectedRole } = this.loginForm.value;
 
     this.authService.login({ email, password }).subscribe({
       next: (res) => {
         const token: any = jwtDecode(res.token);
-        const availableRoles: string[] = token.role; // Extract roles from token
+        const availableRoles: string[] = token.role;
 
         if (availableRoles.includes(selectedRole)) {
-          // Store token and selected role
           localStorage.setItem('token', res.token);
           localStorage.setItem('role', selectedRole);
-
+          this.authService.setUserRole(selectedRole);
           this.redirectUser(selectedRole);
         } else {
           this.errorMessage = 'You do not have permission to access this role.';
         }
+        this.loading = false; // Reset loading state
       },
-      error: () => (this.errorMessage = 'Invalid email or password'),
+      error: () => {
+        this.errorMessage = 'Invalid email or password';
+        this.loading = false; // Reset loading state
+      },
     });
   }
 
@@ -61,7 +67,6 @@ export class LoginComponent {
       [Role.Moderator]: '/moderator-dashboard',
       [Role.User]: '/home',
     };
-
     this.router.navigate([roleRoutes[role] || '/user-dashboard']);
   }
 }
