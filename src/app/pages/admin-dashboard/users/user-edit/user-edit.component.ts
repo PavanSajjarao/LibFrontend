@@ -33,15 +33,15 @@ export class UserEditComponent implements OnInit {
       roles: this.fb.array([])  // Ensure roles array is initialized
     });
 
-    console.log("🚀 Component Initialized: User ID:", this.userId);
+    console.log("Component Initialized: User ID:", this.userId);
     this.loadUser();
   }
 
   loadUser(): void {
     this.userService.getUserById(this.userId).subscribe({
       next: (user: User) => {
-        console.log("🛠 User Data from API:", user);
-        console.log("🔹 User Roles from API:", user.role);
+        console.log("User Data from API:", user);
+        console.log("User Roles from API:", user.role);
 
         // Patch name and email first
         this.userForm.patchValue({
@@ -50,20 +50,20 @@ export class UserEditComponent implements OnInit {
         });
 
         // Ensure FormArray is cleared before adding new controls
-        const rolesArray = this.rolesFormArray;
-        rolesArray.clear();
+        const rolesArray = this.rolesFormArray; //this is a getter method to acess the Role Form Array
+        rolesArray.clear(); //before setting we need clear.When we load a user’s roles from the API, we dynamically add checkboxes to the form based on the user’s existing roles. However, if we don’t clear it first, it might contain stale data from previous users.
 
-        // Add roles as FormControls with correct values
+      // Add roles as FormControls with correct values
         this.roles.forEach(role => {
           const isChecked = user.role.includes(role);
-          console.log(`✅ Setting ${role} to`, isChecked);
+          console.log(`Setting ${role} to`, isChecked);
           rolesArray.push(new FormControl<boolean>(isChecked, { nonNullable: true }));
         });
 
-        console.log("✅ Roles after loading:", this.rolesFormArray.value);
+        console.log(" Roles after loading:", this.rolesFormArray.value);
       },
       error: (err) => {
-        console.error('❌ Error fetching user data:', err);
+        console.error('Error fetching user data:', err);
         this.errorMessage = 'Failed to load user data. Please try again.';
       }
     });
@@ -74,7 +74,7 @@ export class UserEditComponent implements OnInit {
   }
 
   onRoleChange(index: number, value: boolean) {
-    console.log(`🔄 Role ${this.roles[index]} changed to:`, value);
+    console.log(`Role ${this.roles[index]} changed to:`, value);
     
     // Ensure FormArray updates properly
     this.rolesFormArray.at(index).setValue(value);
@@ -84,21 +84,21 @@ export class UserEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.userForm.invalid) {
-      console.warn("⚠️ Form is invalid. Fix errors before submitting.");
+      console.warn("Form is invalid. Fix errors before submitting.");
       return;
     }
 
-    console.log("📊 Roles Before Filtering:", this.rolesFormArray.value);
+    console.log("Roles Before Filtering:", this.rolesFormArray.value);
 
     // Extract selected roles
     const selectedRoles = this.roles
       .map((role, index) => (this.rolesFormArray.at(index).value ? role : null))
       .filter(role => role !== null); // Remove null values
 
-    console.log("🔎 Selected Roles Before Submission:", selectedRoles);
+    console.log("Selected Roles Before Submission:", selectedRoles);
 
     if (selectedRoles.length === 0) {
-      this.errorMessage = "⚠️ At least one role must be selected.";
+      this.errorMessage = " At least one role must be selected.";
       return;
     }
 
@@ -108,15 +108,15 @@ export class UserEditComponent implements OnInit {
       role: selectedRoles // API expects "role" field
     };
 
-    console.log("🚀 Final Data to Submit:", updatedUserData);
+    console.log("Final Data to Submit:", updatedUserData);
 
     this.userService.updateUser(this.userId, updatedUserData).subscribe({
       next: () => {
-        console.log("✅ User successfully updated!");
+        console.log("User successfully updated!");
         this.router.navigate(['/admin-dashboard/users']);
       },
       error: (err) => {
-        console.error('❌ Error updating user:', err);
+        console.error('Error updating user:', err);
         this.errorMessage = 'Error updating user. Please try again.';
       }
     });

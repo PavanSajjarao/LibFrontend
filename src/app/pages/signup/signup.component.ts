@@ -33,7 +33,7 @@ export class SignUpComponent {
   
     this.authService.signUp(this.signUpForm.value).subscribe({
       next: () => {
-        this.router.navigate(['/home']); // ✅ No need to store token here; it's already handled in AuthService
+        this.router.navigate(['/home']); //  No need to store token here; it's already handled in AuthService
         this.isSubmitting = false;
       },
       error: (error: HttpErrorResponse) => {
